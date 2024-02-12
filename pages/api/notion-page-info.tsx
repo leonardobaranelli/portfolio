@@ -1,15 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import got from 'got'
 import { PageBlock } from 'notion-types'
-import {
-  getBlockIcon,
+import {  
   getBlockTitle,
-  getPageProperty,
-  isUrl,
+  getPageProperty,  
   parsePageId
 } from 'notion-utils'
-
 import * as libConfig from '@/lib/config'
 import { mapImageUrl } from '@/lib/map-image-url'
 import { notion } from '@/lib/notion-api'
@@ -64,16 +60,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   )
   const imageFallbackUrl = mapImageUrl(libConfig.defaultPageCover, block)
 
-  const blockIcon = getBlockIcon(block, recordMap)
-  const authorImageBlockUrl = mapImageUrl(
-    blockIcon && isUrl(blockIcon) ? blockIcon : null,
-    block
-  )
-  const authorImageFallbackUrl = mapImageUrl(libConfig.defaultPageIcon, block)
-  const [authorImage, image] = await Promise.all([
-    getCompatibleImageUrl(authorImageBlockUrl, authorImageFallbackUrl),
-    getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
-  ])
+  const image = await getCompatibleImageUrl(imageBlockUrl, imageFallbackUrl)
   // const socialDescription =
   //   getPageProperty<string>('Description', block, recordMap) ||
   //   libConfig.description
@@ -89,7 +76,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   ? new Date(lastUpdatedTime)
   //   : publishedTime
   //   ? new Date(publishedTime)
-  //   : undefined
+  //   : undefined  
   const date =
     isBlogPost && datePublished
       ? `${datePublished.toLocaleString('en-US', {

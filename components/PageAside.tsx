@@ -8,7 +8,7 @@ export const PageAside: React.FC<{
   block: Block
   recordMap: ExtendedRecordMap
   isBlogPost: boolean
-}> = ({ block, recordMap, isBlogPost }) => {
+}> = ({ block }) => {
   if (!block) {
     return null
   }
