@@ -28,7 +28,8 @@ export const FooterImpl: React.FC = () => {
   }, [])
 
   return (
-    <footer className={styles.footer}>      
+    <footer className={styles.footer}>            
+      <div><em style={{ fontSize: '20px' }}>leoabaranelli@gmail.com</em></div>
 
       <div className={styles.settings}>
         {hasMounted && (
