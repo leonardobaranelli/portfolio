@@ -86,9 +86,12 @@
   transition: color 50ms ease-out;
 }
 
-.toggleDarkMode { 
+.toggleDarkMode {     
+  width: 1.7em;
+  height: 1.7em;
   justify-content: center; 
   align-items: center; 
+  transition: background-color 0.3s;
 }
 
 .toggleDarkMode:hover {
@@ -192,4 +195,30 @@
 
 .hidden {
   visibility: hidden;
+}
+
+.darkModeCorner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8em;
+  height: 4em;   
+  border: 0;
+  cursor: pointer;
+}
+
+.toggleDarkMode svg {     
+  width: 2.1em;
+  height: 2.1em;
+  justify-content: center; 
+  align-items: center; 
+  transition: background-color 0.3s;
+}
+
+.toggleDarkMode:hover svg {
+  fill: #2795e9; 
 }
